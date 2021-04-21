@@ -6,10 +6,21 @@
 </head>
 <body>
 <form action="">
-  <p><input type="checkbox" name="a" value="1680" checked> 1680</p>
-  <p><input type="checkbox" name="a" value="1883" checked> 1883</p>
-  <p><input type="checkbox" name="a" value="1934"> 1934</p>
-  <p><input type="checkbox" name="a" value="2010"> 2010</p>
+  <p>Выберите размер гамбургера:</p>
+  <select name="size">
+    <option selected value="big">Большой (100 руб.)</option>
+    <option value="small">Маленький (50 руб.)</option>
+  </select>
+
+  <p>Выберите начинку гамбургера:</p>
+  <select name="stuffing">
+    <option selected value="cheese">Сыр (+10 руб.)</option>
+    <option value="salad">Салат (+20 руб.)</option>
+    <option value="potatoes">Картошка (+15 руб.)</option>
+  </select>
+  <p>Дополнительно:</p>
+  <p><input type="checkbox" name="addition" value="condiment">Посыпать приправой</p>
+  <p><input type="checkbox" name="addition" value="mayonnaise">Полить майонезом</p>
   <p><button>Посчитать</button></p>
 </form>
 <script src="script.js"></script>

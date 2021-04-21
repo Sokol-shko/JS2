@@ -1,7 +1,14 @@
-class Hamburger {
-    constructor(size, stuffing) {
+//
+//     addTopping(topping) {}    // Добавить добавку }
+//     removeTopping(topping) { // Убрать добавку }
+//     getToppings(topping) {   // Получить список добавок }
+//     getSize() {              // Узнать размер гамбургера }
+//     getStuffing() {          // Узнать начинку гамбургера }
+//     calculatePrice() {       // Узнать цену }
+//     calculateCalories() {    // Узнать калорийность }
+// }
 
-    }
+class Hamburger {
     size = {
         small: {
             price: 50,
@@ -36,28 +43,50 @@ class Hamburger {
             kkal: 5
         }
     }
+
     addTopping(topping) {}
+    removeTopping(topping) {}
+    getToppings(topping) {}
+    getSize() {}
+    getStuffing() {}
+    calculatePrice() {
+        let sizeSelect = document.querySelector('select[name="size"]');
+        let strSize = sizeSelect.options[sizeSelect.selectedIndex].value;
+        let priceSize = this.size[strSize].price;
 
+        let stuffingSelect = document.querySelector('select[name="stuffing"]');
+        let strStuffing = stuffingSelect.options[stuffingSelect.selectedIndex].value;
+        let priceStuffing = this.stuffing[strStuffing].price;
+
+        let toppingChecked = document.querySelectorAll('input[name="addition"]');
+        let valuesChecked = [];
+        for (let i = 0;i < toppingChecked.length; i++) {
+            if (toppingChecked[i].checked) {
+                valuesChecked.push(toppingChecked[i].value);
+            }
+        }
+        // if (toppingChecked.checked) {
+        //     mas = toppingChecked.value;
+        // }
+
+        // let strStuffing = stuffingSelect.options[stuffingSelect.selectedIndex].value;
+        // let priceStuffing = this.stuffing[strStuffing].price;
+
+        console.log(priceSize);
+        console.log(priceStuffing);
+        console.log(valuesChecked);
+    }
+    calculateCalories() {}
 }
-//
-//     addTopping(topping) {}    // Добавить добавку }
-//     removeTopping(topping) { // Убрать добавку }
-//     getToppings(topping) {   // Получить список добавок }
-//     getSize() {              // Узнать размер гамбургера }
-//     getStuffing() {          // Узнать начинку гамбургера }
-//     calculatePrice() {       // Узнать цену }
-//     calculateCalories() {    // Узнать калорийность }
-// }
 
-гамбургер
-конструктор (размер, начинка)
-// размеры: Маленький (50 рублей, 20 калорий). Большой (100 рублей, 40 калорий).
-// начинки: обязат:
-// ### С сыром (+10 рублей, +20 калорий).
-// ### С салатом (+20 рублей, +5 калорий).
-// ### С картофелем (+15 рублей, +10 калорий).
-//доп:
-//посыпать приправой (+15 рублей, +0 калорий)
-//полить майонезом (+20 рублей, +5 калорий)
+let burger = new Hamburger();
+burger.calculatePrice();
 
-// расчитать стоимость и калорийность гамбургера
+
+
+
+
+
+
+
+
