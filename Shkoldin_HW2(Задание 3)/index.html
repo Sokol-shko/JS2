@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Бургерная</title>
+</head>
+<body>
+<form action="">
+  <p>Выберите размер гамбургера:</p>
+  <select name="size">
+    <option selected value="big">Большой (100 руб.)</option>
+    <option value="small">Маленький (50 руб.)</option>
+  </select>
+
+  <p>Выберите начинку гамбургера:</p>
+  <select name="stuffing">
+    <option selected value="cheese">Сыр (+10 руб.)</option>
+    <option value="salad">Салат (+20 руб.)</option>
+    <option value="potatoes">Картошка (+15 руб.)</option>
+  </select>
+  <p>Дополнительно:</p>
+  <p><input type="checkbox" name="addition" value="condiment" >Посыпать приправой (+15 руб. )</p>
+  <p><input type="checkbox" name="addition" value="mayonnaise" checked>Полить майонезом (+20 руб.)</p>
+  <p><button>Посчитать</button></p>
+  Итого: <span id="price">100</span> руб.
+  Калории: <span id="calories">50</span> ккал
+</form>
+<script src="script.js"></script>
+</body>
+</html>
