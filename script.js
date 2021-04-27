@@ -16,27 +16,35 @@ class GoodsItem {
 
 //**********************
 class GoodsList {
-  sumGoods = 0;
   constructor () {
+    this.sumGoods = 0;
     this.goods = [];
+    this.filteredGoods = [];
   }
   fetchGoods () {
     return makeGETRequest(`/catalogData.json`)
         .then((goods) => {
           this.goods = JSON.parse(goods);
+          this.filteredGoods = JSON.parse(goods);
         })
   }
 
-
+  filterGoods(value) {
+    const regexp = new RegExp(value, 'i');
+    this.filteredGoods = this.goods.filter(good =>
+        regexp.test(good.product_name));
+    this.render();
+  }
 
   render () {
     let listHtml = '';
-    this.goods.forEach(good => {
+    this.filteredGoods.forEach(good => {
       const goodItem = new GoodsItem(good.product_name, good.price);
       listHtml += goodItem.render();
     });
     document.querySelector('.goods-list').innerHTML = listHtml;
   }
+
   calculateSumAllGoods () {
     this.goods.forEach(good => {
       this.sumGoods += good.price;
@@ -90,3 +98,10 @@ list.fetchGoods()
 list.calculateSumAllGoods();
 //alert(`${list.sumGoods} руб`);
 
+const searchInput = document.querySelector('.goods-search');
+
+const searchButton = document.querySelector('.search-button');
+searchButton.addEventListener('click', (e) => {
+  const value = searchInput.value;
+  list.filterGoods(value);
+});
