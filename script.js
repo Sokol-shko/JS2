@@ -28,4 +28,19 @@ class FormValidation {
         this.error = '';
     }
 
+    sendOnCheckValidation () {
+        this.name = document.querySelector('#name').value;
+
+    }
+
+    checkValidation () {
+        let sendButton = document.querySelector('#send');
+        sendButton.addEventListener('click', (e) => {
+            this.sendOnCheckValidation();
+            console.log(`Всё получилось! ${this.name}`);
+        })
+    }
 }
+
+let fv = new FormValidation();
+fv.sendOnCheckValidation();
