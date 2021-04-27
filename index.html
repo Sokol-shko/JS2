@@ -5,21 +5,24 @@
   <meta name="viewport"
         content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Замена ковычек и форма обратной связи</title>
+  <title>Замена кавычек и форма обратной связи</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <form action="">
-    <p>Введите текст:</p>
-    <input type="text" class="text">
-    <span>Здесь итог</span>
-    <p>Форма обратной связи:</p>
-    <input type="text" class="text">
-    <input type="text" class="text">
-    <input type="text" class="text">
-    <input type="text" class="text">
-    <input type="submit" class="submit">
-  </form>
+  <div class="box">
+    <form action="">
+      <p>Введите текст:</p>
+      <textarea name="inputText" id="inputText" class="inputText">''Beginning'. I don't know what 'language' will sound like in English, you don't know what 'key' will sound like in French, no one knows 'what happened next''</textarea>
+      <span id="resultText" class="resultText"> </span>
+      <a id="change" class="change" href="#">Заменить кавычки</a>
+      <p>Форма обратной связи:</p>
+      <input type="text" placeholder="Имя" class="name">
+      <input type="text" placeholder="Телефон" class="phone">
+      <input type="text" placeholder="E-mail" class="mail">
+      <input type="text" placeholder="Текст" class="text">
+      <button class="send">Отправить</button>
+    </form>
+  </div>
   <script src="script.js"></script>
 </body>
 </html>

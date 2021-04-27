@@ -2,7 +2,22 @@
   margin: 0;
   padding: 0; }
 
-body {
-  background-color: darkgreen; }
+.box {
+  margin: 10px; }
+
+.inputText {
+  width: 775px;
+  height: 80px; }
+
+.resultText {
+  display: block; }
+
+.change {
+  display: block;
+  margin: 15px 0 15px 0; }
+
+input {
+  display: block;
+  margin: 15px 0 15px 0; }
 
 /*# sourceMappingURL=style.css.map */
