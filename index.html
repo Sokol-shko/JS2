@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Замена кавычек и форма обратной связи</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="box">
+    <form action="">
+      <p>Введите текст:</p>
+      <textarea name="inputText" id="inputText" class="inputText">''Beginning'. I don't know what 'language' will sound like in English, you don't know what 'key' will sound like in French, no one knows 'what happened next''</textarea>
+      <span id="resultText" class="resultText"> </span>
+      <a id="change" class="change" href="#">Заменить кавычки</a>
+
+      <h2>Форма обратной связи:</h2>
+      <p>Требования:</p>
+      <p>1) Имя должно содержать только буквы;</p>
+      <p>2) Телефон должен иметь вид +7(000)000-0000;</p>
+      <p>3) E-mail должен иметь вид mymail@mail.ru, или my.mail@mail.ru, или my-mail@mail.ru;</p>
+      <p>4) Текст может быть любой.</p>
+      <p>
+        <input type="text" placeholder="Имя" class="name" id="name" value="Митя"> <span id="error_name"></span>
+      </p>
+      <p>
+        <input type="text" placeholder="Телефон" class="phone" id="phone" value="+7(333)666-9999"> <span id="error_phone"></span>
+      </p>
+      <p>
+        <input type="text" placeholder="E-mail" class="mail" id="mail" value="my.js-russia@icloud.com"> <span id="error_mail"></span>
+      </p>
+      <p>
+        <textarea name="text" placeholder="Текст" class="text" id="text">Какой-то текст</textarea>
+      </p>
+      <button type="button" class="send" id="send">Отправить</button>
+    </form>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>

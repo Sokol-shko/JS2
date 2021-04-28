@@ -1,0 +1,47 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+.box {
+  margin: 10px;
+}
+
+.inputText {
+  width: 775px;
+  height: 80px;
+}
+
+.resultText {
+  display: block;
+}
+
+.change {
+  display: block;
+  margin: 15px 0 15px 0;
+  padding: 5px;
+}
+
+.name,
+.phone,
+.mail,
+.text {
+  display: inline-block;
+  padding: 5px;
+  margin: 15px 0 15px 0;
+  border: 3px solid black;
+}
+
+.text {
+  width: 760px;
+  height: 140px;
+}
+
+.error_text {
+  display: inline-block;
+}
+
+.error_border {
+  border: 3px solid red;
+}
+
