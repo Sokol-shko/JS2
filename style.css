@@ -14,10 +14,26 @@
 
 .change {
   display: block;
-  margin: 15px 0 15px 0; }
+  margin: 15px 0 15px 0;
+  padding: 5px; }
 
-input {
-  display: block;
-  margin: 15px 0 15px 0; }
+.name,
+.phone,
+.mail,
+.text {
+  display: inline-block;
+  padding: 5px;
+  margin: 15px 0 15px 0;
+  border: 3px solid black; }
+
+.text {
+  width: 760px;
+  height: 140px; }
+
+.error_text {
+  display: inline-block; }
+
+.error_border {
+  border: 3px solid red; }
 
 /*# sourceMappingURL=style.css.map */
