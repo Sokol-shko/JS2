@@ -16,9 +16,10 @@
   margin: 0 25px 0 25px; }
 
 .goods-search {
-  font-size: 14px;
+  padding: 5px;
+  font-size: 20px;
   width: 150px;
-  height: 30px;
+  height: 16px;
   background-color: white; }
 
 .cart-button,

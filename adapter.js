@@ -17,7 +17,7 @@ export default function makeGETRequest(url) {
             }
         };
 
-        //console.log('Итоговый URL => ', `${API_URL}${url}`);
+        console.log('Итоговый URL => ', `${API_URL}${url}`);
         xhr.open('GET', `${API_URL}${url}`, true);
         xhr.send();
     })
