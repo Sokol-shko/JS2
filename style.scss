@@ -48,7 +48,7 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  margin: 50px 0;
+  padding: 50px 0;
 }
 
 .goods-item {
@@ -62,4 +62,24 @@
 .goods-item:hover {
   background-color: #eaeaea;
   cursor: pointer;
+}
+
+main {
+  position: relative;
+}
+
+.modalCarts {
+  color: white;
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 327px;
+  height: 260px;
+  border: 1px solid #000;
+  background-color: rgba(30, 32, 67, 0.98);
+
+  p {
+    text-align: center;
+    font-size: 24px;
+  }
 }

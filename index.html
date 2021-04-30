@@ -12,23 +12,29 @@
             <!--  пока пусто  -->
         </div>
         <div class="menu-block">
-            <input type="text" class="goods-search" v-model="searchLine"/>
-            <button class="search-button" type="button" @click="filterGoods">Искать</button>
-            <button class="cart-button" type="button">Корзина</button>
+            <input v-model="searchLine" type="text" class="goods-search"/>
+            <button @click="filterGoods" class="search-button" type="button" >Искать</button>
+            <button @click="changeVisibleCart" class="cart-button" type="button" >Корзина</button>
         </div>
     </header>
     <main>
-        <div class="goods-list">
-            <div class="goods-item" v-for="good in filteredGoods">
+        <span v-show="isVisibleCart" class="modalCarts">
+            <p>Здесь будет сама корзина</p>
+        </span>
+        <div v-if="filteredGoods.length !== 0" class="goods-list">
+            <div  v-for="good in filteredGoods"class="goods-item">
                 <h3>{{ good.product_name }}</h3>
                 <p>{{ good.price }}</p>
             </div>
+        </div>
+        <div v-else>
+            Нет данных!
         </div>
 
     </main>
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.js"></script>
-<script type="module" src="script.js"></script>
+<script src="script.js"></script>
 </body>
 </html>

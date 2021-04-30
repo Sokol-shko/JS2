@@ -1,13 +1,12 @@
 'use strict';
 
-//import makeGETRequest from './adapter.js';
-
 const app = new Vue({
     el: '#app',
     data: {
         goods: [],
         filteredGoods: [],
-        searchLine: ''
+        searchLine: '',
+        isVisibleCart: false
     },
     methods: {
         makeGETRequest(url) {
@@ -39,6 +38,9 @@ const app = new Vue({
             this.filteredGoods = this.goods.filter(good =>
                 regexp.test(good.product_name));
             console.log(this.filteredGoods);
+        },
+        changeVisibleCart () {
+            this.isVisibleCart = !this.isVisibleCart;
         }
     },
     mounted() {
@@ -57,10 +59,6 @@ class GoodsItem {
         this.product_name = title;
         this.price = price;
     }
-
-    // render () {
-    //     return `<div class="goods-item"><h3>${this.product_name}</h3><p>${this.price}</p></div>`;
-    // }
 }
 
 //**********************
@@ -70,29 +68,6 @@ class GoodsList {
         this.goods = [];
         this.filteredGoods = [];
     }
-    // fetchGoods () {
-    //     return makeGETRequest(`/catalogData.json`)
-    //         .then((goods) => {
-    //             this.goods = JSON.parse(goods);
-    //             this.filteredGoods = JSON.parse(goods);
-    //         })
-    // }
-
-    // filterGoods(value) {
-    //     const regexp = new RegExp(value, 'i');
-    //     this.filteredGoods = this.goods.filter(good =>
-    //         regexp.test(good.product_name));
-    //     // this.render();
-    // }
-
-    // render () {
-    //     let listHtml = '';
-    //     this.filteredGoods.forEach(good => {
-    //         const goodItem = new GoodsItem(good.product_name, good.price);
-    //         listHtml += goodItem.render();
-    //     });
-    //     document.querySelector('.goods-list').innerHTML = listHtml;
-    // }
 
     calculateSumAllGoods () {
         this.goods.forEach(good => {
@@ -136,21 +111,3 @@ class ProductsCartElement {
     // получение списка товаров корзины
     getListProductsCart () {}
 }
-
-
-//**********************
-
-const  list = new GoodsList();
-// list.fetchGoods()
-//     .then(() => list.render());
-
-// list.calculateSumAllGoods();
-// //alert(`${list.sumGoods} руб`);
-//
-// const searchInput = document.querySelector('.goods-search');
-//
-// const searchButton = document.querySelector('.search-button');
-// searchButton.addEventListener('click', (e) => {
-//     const value = searchInput.value;
-//     list.filterGoods(value);
-// });
