@@ -38,11 +38,7 @@ const app = new Vue({
             const regexp = new RegExp(this.searchLine, 'i');
             this.filteredGoods = this.goods.filter(good =>
                 regexp.test(good.product_name));
-            this.makeGETRequest(`/catalogData.json`)
-                .then((goods) => {
-                    this.goods = JSON.parse(goods);
-                    this.filteredGoods = JSON.parse(goods);
-                })
+            console.log(this.filteredGoods);
         }
     },
     mounted() {
@@ -82,12 +78,12 @@ class GoodsList {
     //         })
     // }
 
-    filterGoods(value) {
-        const regexp = new RegExp(value, 'i');
-        this.filteredGoods = this.goods.filter(good =>
-            regexp.test(good.product_name));
-        // this.render();
-    }
+    // filterGoods(value) {
+    //     const regexp = new RegExp(value, 'i');
+    //     this.filteredGoods = this.goods.filter(good =>
+    //         regexp.test(good.product_name));
+    //     // this.render();
+    // }
 
     // render () {
     //     let listHtml = '';
