@@ -40,7 +40,7 @@ Vue.component('goods-search', {
 Vue.component('cart', {
     name: 'cart',
     data: () => ({
-        isVisibleCart: false,
+        isVisibleCart: false
     }),
     methods: {
         changeVisibleCart () {
@@ -54,5 +54,15 @@ Vue.component('cart', {
                 <p>Здесь будет сама корзина</p>
             </span>
         </div>    
+    `
+});
+
+Vue.component('messageError', {
+    name: 'messageError',
+    props: ['msgError'],
+    template: `
+        <div>
+            <p>Не удаётся выполнить запрос к серверу</p>
+        </div>
     `
 });

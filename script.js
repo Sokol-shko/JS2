@@ -6,6 +6,7 @@ const app = new Vue({
         goods: [],
         filteredGoods: [],
         searchLine: '',
+        msgError: 0,
         // isVisibleCart: false
     },
     methods: {
@@ -24,7 +25,10 @@ const app = new Vue({
                 xhr.onreadystatechange = () => {
                     if (xhr.readyState === 4) {
                         if (xhr.status === 200) resolve(xhr.responseText);
-                        else reject('Извините, произошёл сбой. Мы уже разбираемся в проблеме.');
+                        else {
+                            reject('Извините, произошёл сбой. Мы уже разбираемся в проблеме.');
+                            this.msgError = 1;
+                        }
                     }
                 };
 
@@ -38,6 +42,7 @@ const app = new Vue({
             this.filteredGoods = this.goods.filter(good =>
                 regexp.test(good.product_name));
             console.log(this.filteredGoods);
+            console.log(this.msgError);
         },
         // changeVisibleCart () {
         //     this.isVisibleCart = !this.isVisibleCart;
