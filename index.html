@@ -6,6 +6,24 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+<div id="app">
+    <header class="menu">
+        <div class="menu-block">
+            <!--  пока пусто  -->
+        </div>
+        <div class="menu-block">
+            <goods-search v-model="searchLine" @filter-goods="filterGoods"></goods-search>
+            <cart></cart>
+        </div>
+    </header>
+    <main>
+        <goods-list :goods="filteredGoods"></goods-list>
+    </main>
+    <message-error v-if="msgError === 1"></message-error>
+</div>
 
+<script src="https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.js"></script>
+<script src="script.js"></script>
+<script src="components.js"></script>
 </body>
 </html>
