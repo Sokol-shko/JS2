@@ -28,25 +28,31 @@ Vue.component('goods-item', {
 
 Vue.component('goods-search', {
     name: 'goods-search',
-    props: ['searchLine', 'filteredGoods'],
-    data() {
-        return {
-            searchLine: '',
-        }
-    },
-    computed: {
-        filterGoods() {
-            const regexp = new RegExp(this.searchLine, 'i');
-            console.log(this.searchLine);
-            this.filteredGoods = this.goods.filter(good =>
-                regexp.test(good.product_name));
-            console.log(this.filteredGoods);
-        }
+    props: ['searchLine'],
+    template: `
+        <div class="flex">
+            <input :value="searchLine" @input="$emit('input', $event.target.value)" type="text" class="goods-search"/>
+            <button  @click="$emit('filter-goods')" class="search-button" type="button" >Искать</button>
+        </div>
+    `
+});
+
+Vue.component('cart', {
+    name: 'cart',
+    data: () => ({
+        isVisibleCart: false,
+    }),
+    methods: {
+        changeVisibleCart () {
+            this.isVisibleCart = !this.isVisibleCart;
+        },
     },
     template: `
-        <div>
-            <input v-model="searchLine" type="text" class="goods-search"/>
-            <button @click="filterGoods" class="search-button" type="button" >Искать</button>
-        </div>
+        <div class="flex">
+            <button @click="changeVisibleCart" class="cart-button" type="button" >Корзина</button>
+            <span v-show="isVisibleCart" class="modalCarts">
+                <p>Здесь будет сама корзина</p>
+            </span>
+        </div>    
     `
 });

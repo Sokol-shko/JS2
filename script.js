@@ -5,8 +5,8 @@ const app = new Vue({
     data: {
         goods: [],
         filteredGoods: [],
-        // searchLine: '',
-        isVisibleCart: false
+        searchLine: '',
+        // isVisibleCart: false
     },
     methods: {
         makeGETRequest(url) {
@@ -39,9 +39,9 @@ const app = new Vue({
                 regexp.test(good.product_name));
             console.log(this.filteredGoods);
         },
-        changeVisibleCart () {
-            this.isVisibleCart = !this.isVisibleCart;
-        }
+        // changeVisibleCart () {
+        //     this.isVisibleCart = !this.isVisibleCart;
+        // }
     },
     mounted() {
         this.makeGETRequest(`/catalogData.json`)
