@@ -1,18 +1,22 @@
+'use strict';
+
 const express = require('express');
 const bodyParser = require('body-parser');
 const fs = require('fs');
-
 const app = express();
 
 app.use(express.static('.'));
+app.use(bodyParser.json());
 
 app.get('/catalogData', (req, res) => {
-    fs.readFile('catalog.json', 'utf8', (err, data) => {
-        res.send(data);
-    });
+    try {
+        fs.readFile('catalog.json', 'utf8', (err, data) => {
+            res.send(data);
+        });
+    } catch {
+        alert('Ошибка!');
+    }
 });
-
-app.use(bodyParser.json());
 
 app.post('/addToCart', (req, res) => {
     fs.readFile('cart.json', 'utf8', (err, data) => {

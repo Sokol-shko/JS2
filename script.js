@@ -6,12 +6,11 @@ const app = new Vue({
         goods: [],
         filteredGoods: [],
         searchLine: '',
-        msgError: 0,
-        // isVisibleCart: false
+        msgError: 0
     },
     methods: {
         makeGETRequest(url) {
-            const API_URL = 'https://raw.githubusercontent.com/GeekBrainsTutorial/online-store-api/master/responses';
+            const API_URL = 'http://localhost:3000/';
 
             return new Promise((resolve, reject) => {
                 let xhr;
@@ -63,13 +62,8 @@ const app = new Vue({
                 regexp.test(good.product_name));
             console.log(this.filteredGoods);
             console.log(this.msgError);
-        },
-        // changeVisibleCart () {
-        //     this.isVisibleCart = !this.isVisibleCart;
-        // }
+        }
     },
-
-
     mounted() {
         this.makeGETRequest(`/catalogData`)
             .then((goods) => {
