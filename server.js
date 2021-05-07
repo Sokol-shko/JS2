@@ -4,13 +4,15 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const fs = require('fs');
 const app = express();
+//var cors = require('cors');
 
 app.use(express.static('.'));
 app.use(bodyParser.json());
+//app.use(cors());
 
 app.get('/catalogData', (req, res) => {
     try {
-        fs.readFile('catalog.json', 'utf8', (err, data) => {
+        fs.readFile('./database/catalog.json', 'utf8', (err, data) => {
             res.send(data);
         });
     } catch {
@@ -19,7 +21,7 @@ app.get('/catalogData', (req, res) => {
 });
 
 app.post('/addToCart', (req, res) => {
-    fs.readFile('cart.json', 'utf8', (err, data) => {
+    fs.readFile('./database/cart.json', 'utf8', (err, data) => {
         if (err) {
             res.send('{"result": 0}');
         } else {
@@ -28,7 +30,7 @@ app.post('/addToCart', (req, res) => {
 
             cart.push(item);
 
-            fs.writeFile('cart.json', JSON.stringify(cart), (err) => {
+            fs.writeFile('./database/cart.json', JSON.stringify(cart), (err) => {
                 if (err) {
                     res.send('{"result": 0}');
                 } else {
@@ -39,6 +41,13 @@ app.post('/addToCart', (req, res) => {
     });
 });
 
-app.listen(3000, function() {
+// app.use(function (req, res, next) {
+//     res.header("Access-Control-Allow-Origin", "*");
+//     res.header("Access-Control-Allow-Methods", "GET, PUT, PATCH, POST, DELETE");
+//     res.header("Access-Control-Allow-Headers", "Content-Type");
+//     next();
+// });
+
+app.listen(3000, () => {
     console.log('server is running on port 3000!');
 });

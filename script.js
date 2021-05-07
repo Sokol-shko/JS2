@@ -1,5 +1,7 @@
 'use strict';
 
+const API_URL = 'http://localhost:3000';
+
 const app = new Vue({
     el: '#app',
     data: {
@@ -10,8 +12,6 @@ const app = new Vue({
     },
     methods: {
         makeGETRequest(url) {
-            const API_URL = 'http://localhost:3000/';
-
             return new Promise((resolve, reject) => {
                 let xhr;
 
@@ -31,7 +31,7 @@ const app = new Vue({
                     }
                 };
 
-                console.log('Итоговый URL => ', `${API_URL}${url}`);
+                //console.log('Итоговый URL => ', `${API_URL}${url}`);
                 xhr.open('GET', `${API_URL}${url}`, true);
                 xhr.send();
             })
@@ -45,7 +45,7 @@ const app = new Vue({
                 xhr = new ActiveXObject("Microsoft.XMLHTTP");
             }
 
-            xhr.onreadystatechange = function () {
+            xhr.onreadystatechange = () => {
                 if (xhr.readyState === 4) {
                     callback(xhr.responseText);
                 }
@@ -65,11 +65,12 @@ const app = new Vue({
         }
     },
     mounted() {
-        this.makeGETRequest(`/catalogData`)
+        this.makeGETRequest(`${API_URL}/catalogData`)
             .then((goods) => {
                 this.goods = JSON.parse(goods);
                 this.filteredGoods = JSON.parse(goods);
-            })
+            });
+        //this.makePOSTRequest(``);
     }
 });
 
