@@ -4,11 +4,9 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const fs = require('fs');
 const app = express();
-//var cors = require('cors');
 
 app.use(express.static('../frontend/.'));
 app.use(bodyParser.json());
-//app.use(cors());
 
 app.get('/catalogData', (req, res) => {
     try {

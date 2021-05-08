@@ -31,30 +31,33 @@ const app = new Vue({
                     }
                 };
 
-                //console.log('Итоговый URL => ', `${API_URL}${url}`);
                 xhr.open('GET', url, true);
                 xhr.send();
             })
         },
-        makePOSTRequest(url, data, callback) {
-            let xhr;
+        makePOSTRequest(url, data) {
+            return new Promise((resolve, reject) => {
+                let xhr;
 
-            if (window.XMLHttpRequest) {
-                xhr = new XMLHttpRequest();
-            } else if (window.ActiveXObject) {
-                xhr = new ActiveXObject("Microsoft.XMLHTTP");
-            }
-
-            xhr.onreadystatechange = () => {
-                if (xhr.readyState === 4) {
-                    callback(xhr.responseText);
+                if (window.XMLHttpRequest) {
+                    xhr = new XMLHttpRequest();
+                } else if (window.ActiveXObject) {
+                    xhr = new ActiveXObject("Microsoft.XMLHTTP");
                 }
-            };
 
-            xhr.open('POST', url, true);
-            xhr.setRequestHeader('Content-Type', 'application/json; charset=UTF-8');
+                xhr.onreadystatechange = () => {
+                    if (xhr.status === 200) resolve(xhr.responseText);
+                    else {
+                        reject('Извините, произошёл сбой. Мы уже разбираемся в проблеме.');
+                        this.msgError = 1;
+                    }
+                };
 
-            xhr.send(data);
+                xhr.open('POST', url, true);
+                xhr.setRequestHeader('Content-Type', 'application/json; charset=UTF-8');
+
+                xhr.send(data);
+            })
         },
         filterGoods() {
             const regexp = new RegExp(this.searchLine, 'i');
@@ -70,7 +73,6 @@ const app = new Vue({
                 this.goods = JSON.parse(goods);
                 this.filteredGoods = JSON.parse(goods);
             });
-        //this.makePOSTRequest(``);
     }
 });
 

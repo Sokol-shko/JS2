@@ -5,7 +5,7 @@ Vue.component('goods-list', {
         <div>
             <div v-if="goods.length !== 0" class="goods-list">
                 <div  v-for="good in goods" class="goods-item">
-                    <goods-item :good="good"></goods-item>
+                    <goods-item @add-in-cart="" :good="good"></goods-item>
                 </div>     
             </div>
             <div v-else>
@@ -21,7 +21,8 @@ Vue.component('goods-item', {
     template: `
         <div>
             <h3>{{ good.product_name }}</h3>
-            <p>{{ good.price }}</p> 
+            <p>{{ good.price }}</p>
+            <button class="in-cart">В корзину</button> 
         </div>    
     `
 });
@@ -51,18 +52,31 @@ Vue.component('cart', {
         <div class="flex">
             <button @click="changeVisibleCart" class="cart-button" type="button" >Корзина</button>
             <span v-show="isVisibleCart" class="modalCarts">
-                <p>Здесь будет сама корзина</p>
+                <h3>Корзина</h3>
+                <cart-item @click="$emit('add-in-cart', good"></cart-item>
             </span>
         </div>    
     `
 });
 
-Vue.component('messageError', {
-    name: 'messageError',
+Vue.component('message-error', {
+    name: 'message-error',
     props: ['msgError'],
     template: `
         <div>
             <p>Не удаётся выполнить запрос к серверу</p>
         </div>
+    `
+});
+
+Vue.component('cart-item', {
+    name: 'cart-item',
+    props: ['good'],
+    template: `
+        <div>
+            <h3>{{ good.product_name }}</h3>
+            <p>{{ good.price }}</p>
+<!--            <button class="delete-from-cart">Удалить</button> -->
+        </div>    
     `
 });
