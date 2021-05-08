@@ -6,7 +6,7 @@ const fs = require('fs');
 const app = express();
 //var cors = require('cors');
 
-app.use(express.static('.'));
+app.use(express.static('../frontend/.'));
 app.use(bodyParser.json());
 //app.use(cors());
 
