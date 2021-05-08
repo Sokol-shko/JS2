@@ -32,7 +32,7 @@ const app = new Vue({
                 };
 
                 //console.log('Итоговый URL => ', `${API_URL}${url}`);
-                xhr.open('GET', `${API_URL}${url}`, true);
+                xhr.open('GET', url, true);
                 xhr.send();
             })
         },
