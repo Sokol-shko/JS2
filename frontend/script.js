@@ -7,6 +7,7 @@ const app = new Vue({
     data: {
         goods: [],
         filteredGoods: [],
+        cartGoods: [],
         searchLine: '',
         msgError: 0
     },
@@ -65,6 +66,24 @@ const app = new Vue({
                 regexp.test(good.product_name));
             console.log(this.filteredGoods);
             console.log(this.msgError);
+        },
+        getCartData() {
+            this.makeGETRequest(`${API_URL}/cartData`)
+                .then((goods) => {
+                   this.cartGoods = JSON.parse(goods);
+                });
+        },
+        addToCart(good) {
+            this.makePOSTRequest(`${API_URL}/addToCart`, JSON.stringify(good))
+                .then(() => {
+                    this.getCartData();
+                });
+        },
+        deleteFromCart(good) {
+            this.makePOSTRequest(`${API_URL}/deleteFromCart`, JSON.stringify(good))
+                .then(() => {
+                    this.getCartData();
+                });
         }
     },
     mounted() {
@@ -73,6 +92,7 @@ const app = new Vue({
                 this.goods = JSON.parse(goods);
                 this.filteredGoods = JSON.parse(goods);
             });
+        this.getCartData();
     }
 });
 

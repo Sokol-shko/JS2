@@ -1,15 +1,15 @@
 Vue.component('goods-list', {
     name: 'goods-list',
-    props: ['goods'],
+    props: ['goods', 'addToCart'],
     template: `
         <div>
             <div v-if="goods.length !== 0" class="goods-list">
                 <div  v-for="good in goods" class="goods-item">
-                    <goods-item @add-in-cart="" :good="good"></goods-item>
+                    <goods-item @add-to-cart="addToCart" :good="good"></goods-item>
                 </div>     
             </div>
             <div v-else>
-                Нет данных!
+                Данные отстутствуют!
             </div>
         </div>
     `
@@ -22,7 +22,7 @@ Vue.component('goods-item', {
         <div>
             <h3>{{ good.product_name }}</h3>
             <p>{{ good.price }}</p>
-            <button class="in-cart">В корзину</button> 
+            <button @click="$emit('add-to-cart', good)" class="to-cart">В корзину</button> 
         </div>    
     `
 });
@@ -40,6 +40,7 @@ Vue.component('goods-search', {
 
 Vue.component('cart', {
     name: 'cart',
+    props: ['goods', 'deleteFromCart'],
     data: () => ({
         isVisibleCart: false
     }),
@@ -51,10 +52,17 @@ Vue.component('cart', {
     template: `
         <div class="flex">
             <button @click="changeVisibleCart" class="cart-button" type="button" >Корзина</button>
-            <span v-show="isVisibleCart" class="modalCarts">
+            <div v-show="isVisibleCart" class="modalCarts">
                 <h3>Корзина</h3>
-                <cart-item @click="$emit('add-in-cart', good"></cart-item>
-            </span>
+                <div v-if="goods.length !== 0" class="goods-list">
+                    <div  v-for="good in goods" class="goods-item">
+                        <cart-item @delete-from-cart="deleteFromCart" :good="good"></cart-item>
+                    </div>     
+                </div>
+                <div v-else>
+                    Пусто!
+                </div>
+            </div>
         </div>    
     `
 });
@@ -76,7 +84,16 @@ Vue.component('cart-item', {
         <div>
             <h3>{{ good.product_name }}</h3>
             <p>{{ good.price }}</p>
-<!--            <button class="delete-from-cart">Удалить</button> -->
+            <button @click="$emit('delete-from-cart', good)" class="delete-from-cart" type="button">Удалить</button> 
         </div>    
     `
 });
+
+// Vue.component('add-to-cart', {
+//     name: 'add-to-cart',
+//     template: `
+//         <div>
+//             <cart-item @click="$emit('add-in-cart', good)"></cart-item>
+//         </div>
+//     `
+// });
