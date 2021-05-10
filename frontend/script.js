@@ -25,7 +25,7 @@ const app = new Vue({
                 if (xhr.readyState === 4) {
                     callback(xhr.responseText);
                 } else {
-                    console.log('Извините, произошёл сбой. Мы уже разбираемся в проблеме.');
+                    //console.log('Извините, произошёл сбой. Мы уже разбираемся в проблеме.');
                     this.msgError = 1;
                 }
             };
@@ -46,7 +46,7 @@ const app = new Vue({
                 if (xhr.status === 200) {
                     callback(xhr.responseText);
                 } else {
-                    console.log('Извините, произошёл сбой. Мы уже разбираемся в проблеме.');
+                    //console.log('Извините, произошёл сбой. Мы уже разбираемся в проблеме.');
                     this.msgError = 1;
                 }
             };

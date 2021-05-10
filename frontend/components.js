@@ -65,15 +65,15 @@ Vue.component('cart', {
     `
 });
 
-Vue.component('message-error', {
-    name: 'message-error',
-    props: ['msgError'],
-    template: `
-        <div>
-            <p>Не удаётся выполнить запрос к серверу</p>
-        </div>
-    `
-});
+// Vue.component('message-error', {
+//     name: 'message-error',
+//     props: ['msgError'],
+//     template: `
+//         <div>
+//             <p>Не удаётся выполнить запрос к серверу</p>
+//         </div>
+//     `
+// });
 
 Vue.component('cart-item', {
     name: 'goods-item',
@@ -82,7 +82,7 @@ Vue.component('cart-item', {
         <div>
             <h3>{{ good.product_name }}</h3>
             <p>{{ good.price }}</p>
-            <button @click.prevent="$emit('delete-from-cart', good)" class="delete-from-cart">Удалить</button> 
+            <button @click="$emit('delete-from-cart', good)" class="delete-from-cart" type="button">Удалить</button> 
         </div>    
     `
 });
