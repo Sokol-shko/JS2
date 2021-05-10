@@ -4,75 +4,87 @@ const API_URL = 'http://localhost:3000';
 
 const app = new Vue({
     el: '#app',
-    data: {
+    data: () => ({
         goods: [],
         filteredGoods: [],
+        cartGoods: [],
         searchLine: '',
         msgError: 0
-    },
+    }),
     methods: {
-        makeGETRequest(url) {
-            return new Promise((resolve, reject) => {
-                let xhr;
+        makeGETRequest(url, callback) {
+            let xhr;
 
-                if (window.XMLHttpRequest) {
-                    xhr = new XMLHttpRequest();
-                } else if (window.ActiveXObject) {
-                    xhr = new ActiveXObject("Microsoft.XMLHTTP");
+            if (window.XMLHttpRequest) {
+                xhr = new XMLHttpRequest();
+            } else if (window.ActiveXObject) {
+                xhr = new ActiveXObject("Microsoft.XMLHTTP");
+            }
+
+            xhr.onreadystatechange = () => {
+                if (xhr.readyState === 4) {
+                    callback(xhr.responseText);
+                } else {
+                    console.log('Извините, произошёл сбой. Мы уже разбираемся в проблеме.');
+                    this.msgError = 1;
                 }
+            };
 
-                xhr.onreadystatechange = () => {
-                    if (xhr.readyState === 4) {
-                        if (xhr.status === 200) resolve(xhr.responseText);
-                        else {
-                            reject('Извините, произошёл сбой. Мы уже разбираемся в проблеме.');
-                            this.msgError = 1;
-                        }
-                    }
-                };
-
-                xhr.open('GET', url, true);
-                xhr.send();
-            })
+            xhr.open('GET', url, true);
+            xhr.send();
         },
-        makePOSTRequest(url, data) {
-            return new Promise((resolve, reject) => {
-                let xhr;
+        makePOSTRequest(url, data, callback) {
+            let xhr;
 
-                if (window.XMLHttpRequest) {
-                    xhr = new XMLHttpRequest();
-                } else if (window.ActiveXObject) {
-                    xhr = new ActiveXObject("Microsoft.XMLHTTP");
+            if (window.XMLHttpRequest) {
+                xhr = new XMLHttpRequest();
+            } else if (window.ActiveXObject) {
+                xhr = new ActiveXObject("Microsoft.XMLHTTP");
+            }
+
+            xhr.onreadystatechange = () => {
+                if (xhr.status === 200) {
+                    callback(xhr.responseText);
+                } else {
+                    console.log('Извините, произошёл сбой. Мы уже разбираемся в проблеме.');
+                    this.msgError = 1;
                 }
+            };
 
-                xhr.onreadystatechange = () => {
-                    if (xhr.status === 200) resolve(xhr.responseText);
-                    else {
-                        reject('Извините, произошёл сбой. Мы уже разбираемся в проблеме.');
-                        this.msgError = 1;
-                    }
-                };
+            xhr.open('POST', url, true);
+            xhr.setRequestHeader('Content-Type', 'application/json; charset=UTF-8');
 
-                xhr.open('POST', url, true);
-                xhr.setRequestHeader('Content-Type', 'application/json; charset=UTF-8');
-
-                xhr.send(data);
-            })
+            xhr.send(data);
         },
         filterGoods() {
             const regexp = new RegExp(this.searchLine, 'i');
             this.filteredGoods = this.goods.filter(good =>
                 regexp.test(good.product_name));
-            console.log(this.filteredGoods);
-            console.log(this.msgError);
+            //console.log(this.filteredGoods);
+            //console.log(this.msgError);
+        },
+        getCartData() {
+            this.makeGETRequest(`${API_URL}/cartData`, (goods) => {
+               this.cartGoods = JSON.parse(goods);
+            });
+        },
+        addGoodToCart(good) {
+            this.makePOSTRequest(`${API_URL}/addToCart`, JSON.stringify(good), () => {
+                this.getCartData();
+            });
+        },
+        deleteGoodFromCart(good) {
+            this.makePOSTRequest(`${API_URL}/deleteFromCart`, JSON.stringify(good), () => {
+                this.getCartData();
+            });
         }
     },
     mounted() {
-        this.makeGETRequest(`${API_URL}/catalogData`)
-            .then((goods) => {
-                this.goods = JSON.parse(goods);
-                this.filteredGoods = JSON.parse(goods);
-            });
+        this.makeGETRequest(`${API_URL}/catalogData`, (goods) => {
+            this.goods = JSON.parse(goods);
+            this.filteredGoods = JSON.parse(goods);
+        });
+        this.getCartData();
     }
 });
 
