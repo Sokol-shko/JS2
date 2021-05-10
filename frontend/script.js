@@ -71,12 +71,22 @@ const app = new Vue({
         addGoodToCart(good) {
             this.makePOSTRequest(`${API_URL}/addToCart`, JSON.stringify(good), () => {
                 this.getCartData();
+                this.getDateNow();
             });
         },
         deleteGoodFromCart(good) {
             this.makePOSTRequest(`${API_URL}/deleteFromCart`, JSON.stringify(good), () => {
                 this.getCartData();
+                this.getDateNow();
             });
+        },
+        getDateNow (){
+            let date = new Date();
+            let hour = date.getHours();
+            let minutes = date.getMinutes();
+            let seconds = date.getSeconds();
+            return `${hour}:${minutes}:${seconds}`;
+
         }
     },
     mounted() {
