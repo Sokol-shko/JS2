@@ -3,5 +3,9 @@ module.exports = {
     entry: './components.js',
     output: {
         filename: './build.js'
+    },
+    watch: true,
+    watchOptions: {
+        aggregateTimeout: 100
     }
 };
