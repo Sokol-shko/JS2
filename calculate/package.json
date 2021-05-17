@@ -9,6 +9,7 @@
   "license": "ISC",
   "description": "",
   "dependencies": {
-    "jasmine": "^3.7.0"
+    "jasmine": "^3.7.0",
+    "math": "0.0.3"
   }
 }

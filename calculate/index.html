@@ -9,10 +9,17 @@
     <title>Калькулятор</title>
 </head>
 <body>
-    <div id="app">
+    <input type="text" placeholder="1-ый аргумент" id="arg-one">
+    <select name="operation" id="math_operation">
+        <option value="addition">Сложение</option>
+        <option value="subtraction">Вычитание</option>
+        <option value="multiplication">Умножение</option>
+        <option value="division">Деление</option>
+    </select>
+    <input type="text" placeholder="2-ой аргумент" id="arg-two">
+    <button type="button">Посчитать</button>
+    <span>Результат</span>
 
-    </div>
-    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.js"></script>
     <script src="script.js"></script>
 </body>
 </html>
