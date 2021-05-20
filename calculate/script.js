@@ -1,5 +1,3 @@
-//let arg_one = document.querySelector('#arg-one');
-
 const check = (a, b, calc) => {
     if (a == null || b == null) {
         return null;
@@ -9,21 +7,23 @@ const check = (a, b, calc) => {
             if (typeof b === 'undefined') {
                 return;
             }
+            let result;
             switch (calc) {
-                case 'addition':  a + b;
+                case 'addition':  result = a + b;
                 break;
-                case 'subtraction':  a - b;
-                    break;
-                case 'multiplication':  a * b;
-                    break;
+                case 'subtraction':  result = a - b;
+                break;
+                case 'multiplication':  result = a * b;
+                break;
                 case 'division': {
                    if (b === 0) {
-                        alert('На ноль делить нельзя!');
+                       result = console.log('На ноль делить нельзя!');
                    } else {
-                        a / b;
+                       result = a / b;
                    }
-                    break;}
+                }
             }
+            return result;
         } else {
             return TypeError('Упс. Неверный тип!');
         }
@@ -31,20 +31,27 @@ const check = (a, b, calc) => {
 };
 
 const addition = (a, b) => {
-    check(a,b,'addition');
+    console.log(check(a,b,'addition'));
 };
 
 const subtraction = (a, b) => {
-    check(a,b,'subtraction');
+    console.log(check(a,b,'subtraction'));
 };
 
 const multiplication = (a, b) => {
-    check(a,b,'multiplication');
+    console.log(check(a,b,'multiplication'));
 };
 
 const division = (a, b) => {
-    check(a,b,'division');
+    console.log(check(a,b,'division'));
 };
+
+addition(2,10);
+subtraction(2,10);
+subtraction(null,10);
+multiplication(2,10);
+division(2,10);
+division(2,0);
 
 module.exports = {
     addition: addition,

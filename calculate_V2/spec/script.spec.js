@@ -1,4 +1,5 @@
 const script = require('../script.js');
+
 const addition = script.addition;
 const subtraction = script.subtraction;
 const multiplication = script.multiplication;
