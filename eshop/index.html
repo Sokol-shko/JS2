@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>eShop</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="app">
+    <header class="menu">
+        <div class="menu-block">
+			 
+        </div>
+        <div class="menu-block">
+            <goods-search v-model="searchLine" @filter-goods="filterGoods"></goods-search>
+            <cart :delete-from-cart="deleteGoodFromCart" :goods="cartGoods"></cart>
+        </div>
+    </header>
+    <main>
+        <goods-list :add-to-cart="addGoodToCart" :goods="filteredGoods"></goods-list>
+    </main>
+    <message-error v-if="msgError === 1"></message-error>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.js"></script>
+<script src="../dist/build.js"></script>
+<!--<script src="module.js"></script>-->
+<!--<script src="components.js"></script>-->
+</body>
+</html>
